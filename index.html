@@ -16,6 +16,7 @@
 <script src="./support.js"></script>
 </head>
 <body>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#343F4A"/><text x="50" y="62" text-anchor="middle" font-size="34" fill="#ffffff" font-family="Tahoma">آ.ف</text></svg></template>
 <x-dc>
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,82 +32,155 @@ body{margin:0;background:#FAF8F4;color:#302C29;direction:rtl;-webkit-font-smooth
 a{color:inherit;text-decoration:none}
 a:hover{color:#343F4A}
 ::selection{background:#dfe5dc}
+
+@media (max-width:820px){
+html,body{overflow-x:hidden}
+[data-root]{--px:clamp(20px,5vw,40px)}
+[data-m=hdr]{padding:12px var(--px) !important;grid-template-columns:1fr auto !important;gap:12px !important}
+[data-m=nav],[data-m=hdr-icons]{display:none !important}
+[data-m=burger],[data-m=mnav]{display:flex !important}
+[data-m=hero]{flex-direction:column !important;flex-wrap:nowrap !important;align-items:stretch !important;gap:0 !important;padding:28px var(--px) 40px !important;margin-bottom:0 !important}
+[data-m=hero-text]{display:contents !important}
+[data-m=hero-text]>*{position:relative;z-index:1}
+[data-m=band]{top:150px !important;bottom:0 !important}
+[data-m=h-label]{order:1;align-self:flex-start;margin-bottom:20px !important}
+[data-m=h-cover]{order:2;flex:none !important;width:min(70%,360px) !important;min-width:0 !important;align-self:center;margin-bottom:28px}
+[data-m=h-title]{order:3;font-size:26px !important}
+[data-m=h-auth]{order:4;margin-top:10px !important;font-size:15px !important}
+[data-m=h-desc]{order:5;margin-top:20px !important;max-width:none !important;font-size:16px !important;line-height:1.9 !important}
+[data-m=h-btn]{order:6;align-self:flex-start;margin-top:24px !important;font-size:14px !important}
+[data-m=sec-books]{padding-top:48px !important;padding-bottom:56px !important}
+[data-m=sec-title]{margin-bottom:28px !important;gap:16px !important}
+[data-m=sec-title] h2{font-size:26px !important}
+[data-m=bgrid],[data-m=bgrid2]{grid-template-columns:repeat(auto-fill,minmax(140px,1fr)) !important;gap:36px 18px !important}
+[data-m=bhook]{font-size:15px !important}
+[data-m=morebtn]{margin-top:40px !important}
+[data-m=morebtn] a,[data-m=tbtn]{font-size:15px !important}
+[data-m=tbox]{padding:28px 20px 32px !important;border-radius:14px !important}
+[data-m=tlist]{gap:0 !important;flex-direction:column !important;flex-wrap:nowrap !important}
+[data-m=tcard]{flex:none !important;max-width:none !important;padding:20px 0 !important;gap:8px !important;border-top:1px solid rgba(48,44,41,.15)}
+[data-m=tcard]:first-child{border-top:0;padding-top:0 !important}
+[data-m=tcard]>span:nth-child(2){font-size:18px !important}
+[data-m=tbtn]{margin-top:28px !important}
+[data-m=sess]{padding-top:48px !important}
+[data-m=about-outer]{padding-top:48px !important;padding-bottom:64px !important}
+[data-m=about-box]{padding:24px 20px !important;gap:24px !important}
+[data-m=about-h]{font-size:28px !important}
+[data-m=about-photo]{justify-self:center !important;width:min(60%,204px) !important}
+[data-m=h1]{font-size:28px !important}
+[data-m=page]{padding-top:36px !important;padding-bottom:64px !important}
+[data-m=blist]{grid-template-columns:minmax(0,1fr) !important;gap:20px !important;padding:32px 0 !important}
+[data-m=blist-cover]{width:min(55%,220px)}
+[data-m=blist-title]{font-size:24px !important}
+[data-m=bk-grid]{gap:32px !important}
+[data-m=bk-cover]{position:static !important;padding:28px !important}
+[data-m=bk-cover] img{width:min(72%,300px) !important}
+[data-m=bk-title]{font-size:26px !important}
+[data-m=buybox]{padding:20px !important;margin-top:32px !important}
+[data-m=buy]{grid-auto-flow:row !important;grid-template-columns:minmax(0,1fr) !important}
+[data-m=buy] a{font-size:14px !important;padding:14px 10px !important}
+[data-m=gap-l]{margin-top:56px !important}
+[data-m=rvbox]{padding:28px 20px !important;margin-top:40px !important}
+[data-m=pn]{grid-template-columns:minmax(0,1fr) !important;gap:20px !important;margin-top:56px !important}
+[data-m=pn] img{width:64px !important}
+[data-m=next]{flex-direction:row !important;text-align:right !important}
+[data-m=crow]{flex-wrap:wrap !important;gap:8px 14px !important;padding:18px 0 !important}
+[data-m=crow]>span:last-child{font-size:15px !important;margin-inline-start:0 !important;width:100%;text-align:right}
+[data-m=foot]{flex-direction:column !important;align-items:flex-start !important;padding:32px var(--px) !important;gap:20px !important}
+[data-m=foot-links]{flex-direction:column !important;align-items:flex-start !important;gap:14px !important}
+}
 </style>
 </helmet>
-<div ref="{{ rootRef }}" dir="rtl" style="min-height:100vh;background-color:var(--bg,#FAF8F4);background-image:var(--grain,none);color:#302C29;font-family:'IRANSans','Vazirmatn',Tahoma,sans-serif;font-weight:400;transition:background .6s ease">
+<div ref="{{ rootRef }}" data-root="" dir="rtl" style="min-height:100vh;background-color:var(--bg,#FAF8F4);background-image:var(--grain,none);color:#302C29;font-family:'IRANSans','Vazirmatn',Tahoma,sans-serif;font-weight:400;transition:background .6s ease">
 
   <header style="background:var(--ac,#343F4A);color:#ffffff;transition:background .6s ease">
-    <div style="max-width:1320px;margin:0 auto;padding:15px clamp(40px,8vw,112px);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px">
+    <div data-m="hdr" style="max-width:1320px;margin:0 auto;padding:15px var(--px,clamp(40px,8vw,112px));display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px">
       <a href="#/" style="display:flex;flex-direction:column;gap:2px;justify-self:start">
         <span style="font-size:clamp(20px,2vw,24px);font-weight:700;letter-spacing:-0.01em;line-height:1.3;color:#ffffff">آرش فرزاد</span>
       </a>
-      <nav style="display:flex;gap:clamp(20px,3.2vw,44px);font-size:15px;font-weight:500;line-height:1.5">
+      <nav data-m="nav" style="display:flex;gap:clamp(20px,3.2vw,44px);font-size:15px;font-weight:500;line-height:1.5">
         <sc-for list="{{ nav }}" as="item" hint-placeholder-count="4">
           <a href="{{ item.href }}" onClick="{{ item.onClick }}" style="padding:4px 0;color:#ffffff;border-bottom:1.5px solid {{ item.line }};transition:border-color .35s ease" style-hover="border-color:rgba(255,255,255,.6)">{{ item.label }}</a>
         </sc-for>
       </nav>
-      <div style="justify-self:end;display:flex;gap:22px;align-items:center;color:#ffffff">
+      <div data-m="hdr-icons" style="justify-self:end;display:flex;gap:22px;align-items:center;color:#ffffff">
         <a href="https://www.instagram.com/arash_farzad_/" target="_blank" rel="noopener" aria-label="اینستاگرام" style="display:flex;color:#ffffff;transition:opacity .3s" style-hover="opacity:.7"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"></circle></svg></a>
         <a href="https://t.me/arashfarzad" target="_blank" rel="noopener" aria-label="تلگرام" style="display:flex;color:#ffffff;transition:opacity .3s" style-hover="opacity:.7"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M21.5 4.2L2.8 11.3c-.9.4-.9 1.1 0 1.4l4.7 1.5 1.8 5.6c.2.6.4.8.9.8.4 0 .6-.2.9-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.8c.3-1.3-.5-1.9-1.5-1.6z"></path><path d="M7.5 14.2l10-6.3-7.6 7.4"></path></svg></a>
         <a href="mailto:arashfarzad25@gmail.com" aria-label="ایمیل" style="display:flex;color:#ffffff;transition:opacity .3s" style-hover="opacity:.7"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="1.5"></rect><path d="M3.5 6l8.5 7 8.5-7"></path></svg></a>
       </div>
+      <button data-m="burger" type="button" onClick="{{ toggleMenu }}" aria-label="منو" aria-expanded="{{ menuExpanded }}" style="display:none;justify-self:end;align-items:center;justify-content:center;width:44px;height:44px;margin:-6px -10px -6px 0;padding:0;background:none;border:0;color:#ffffff;cursor:pointer">
+        <sc-if value="{{ menuClosed }}" hint-placeholder-val="{{ true }}"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></sc-if>
+        <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></sc-if>
+      </button>
     </div>
+    <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+      <nav data-m="mnav" aria-label="منو" style="display:none;flex-direction:column;padding:0 var(--px,20px) 20px;border-top:1px solid rgba(255,255,255,.15)">
+        <sc-for list="{{ nav }}" as="item" hint-placeholder-count="5">
+          <a href="{{ item.href }}" onClick="{{ closeMenu }}" style="display:flex;align-items:center;min-height:52px;font-size:16px;font-weight:{{ item.mw }};line-height:1.5;color:#ffffff;border-bottom:1px solid rgba(255,255,255,.12)">{{ item.label }}</a>
+        </sc-for>
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <a href="https://www.instagram.com/arash_farzad_/" target="_blank" rel="noopener" aria-label="اینستاگرام" style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;color:#ffffff"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"></circle></svg></a>
+          <a href="https://t.me/arashfarzad" target="_blank" rel="noopener" aria-label="تلگرام" style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;color:#ffffff"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M21.5 4.2L2.8 11.3c-.9.4-.9 1.1 0 1.4l4.7 1.5 1.8 5.6c.2.6.4.8.9.8.4 0 .6-.2.9-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.8c.3-1.3-.5-1.9-1.5-1.6z"></path><path d="M7.5 14.2l10-6.3-7.6 7.4"></path></svg></a>
+          <a href="mailto:arashfarzad25@gmail.com" aria-label="ایمیل" style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;color:#ffffff"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="1.5"></rect><path d="M3.5 6l8.5 7 8.5-7"></path></svg></a>
+        </div>
+      </nav>
+    </sc-if>
   </header>
 
   <main ref="{{ pageRef }}" style="overflow-x:clip;transition:opacity .45s cubic-bezier(.2,.7,.2,1),transform .55s cubic-bezier(.2,.7,.2,1);will-change:opacity,transform">
 
     <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
       <section ref="{{ heroRef }}" data-screen-label="Home" style="background:var(--soft,#f1eee7);transition:background .6s ease;position:relative;z-index:0;overflow:hidden">
-        <div style="position:relative;max-width:1200px;margin:0 auto clamp(56px,8vw,110px);padding:clamp(56px,8vw,110px) clamp(40px,10vw,112px);display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(40px,7vw,110px);align-items:center">
-          <div aria-hidden="true" style="position:absolute;top:calc(clamp(56px,8vw,110px) + clamp(40px,6vw,90px));bottom:calc(clamp(56px,8vw,110px) + clamp(40px,6vw,90px));left:-100vw;right:-100vw;background:#CEDFEA;z-index:0;pointer-events:none"></div>
-          <a href="{{ featured.href }}" style="flex:0 1 440px;min-width:min(100%,300px);position:relative;z-index:1">
+        <div data-m="hero" style="position:relative;max-width:1200px;margin:0 auto clamp(56px,8vw,110px);padding:clamp(56px,8vw,110px) var(--px,clamp(40px,10vw,112px));display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(40px,7vw,110px);align-items:center">
+          <div data-m="band" aria-hidden="true" style="position:absolute;top:calc(clamp(56px,8vw,110px) + clamp(40px,6vw,90px));bottom:calc(clamp(56px,8vw,110px) + clamp(40px,6vw,90px));left:-100vw;right:-100vw;background:#CEDFEA;z-index:0;pointer-events:none"></div>
+          <a data-m="h-cover" href="{{ featured.href }}" style="flex:0 1 440px;min-width:min(100%,300px);position:relative;z-index:1">
             <img src="{{ featured.cover }}" alt="{{ featured.title }}" style="width:100%;display:block;outline:1px solid rgba(48,44,41,.12);outline-offset:-1px;box-shadow:0 2px 4px rgba(48,44,41,0.072),0 40px 70px -40px rgba(48,44,41,0.495);transition:transform 1s cubic-bezier(.2,.7,.2,1)" style-hover="transform:translateY(-8px)">
           </a>
-          <div style="flex:0 1 360px;min-width:min(100%,280px);display:flex;flex-direction:column;align-items:flex-start;position:relative;z-index:1;padding:clamp(24px,3vw,40px) 0">
-            <div style="display:inline-flex;align-items:center;font-size:14px;font-weight:500;line-height:1.5;color:#6B7F6A;border:1px solid #6B7F6A;border-radius:8px;padding:5px 14px;margin-bottom:28px">تازه‌ترین ترجمه</div>
-            <h1 style="margin:0;font-size:clamp(32px,3.4vw,42px);font-weight:700;line-height:1.4;text-wrap:balance;color:#302C29">{{ featured.title }}</h1>
+          <div data-m="hero-text" style="flex:0 1 360px;min-width:min(100%,280px);display:flex;flex-direction:column;align-items:flex-start;position:relative;z-index:1;padding:clamp(24px,3vw,40px) 0">
+            <div data-m="h-label" style="display:inline-flex;align-items:center;font-size:14px;font-weight:500;line-height:1.5;color:#6B7F6A;border:1px solid #6B7F6A;border-radius:8px;padding:5px 14px;margin-bottom:28px">تازه‌ترین ترجمه</div>
+            <h1 data-m="h-title" style="margin:0;font-size:clamp(32px,3.4vw,42px);font-weight:700;line-height:1.4;text-wrap:balance;color:#302C29"><a href="{{ featured.href }}" style="color:inherit;transition:color .3s ease" style-hover="color:#343F4A;opacity:.75">{{ featured.title }}</a></h1>
             
-            <div style="margin-top:18px;display:flex;flex-direction:column;gap:6px;font-size:16px;font-weight:500;line-height:1.9;color:#343F4A"><span>{{ featured.author }}</span><span>{{ featured.translatorLine }}</span></div>
-            <p style="margin:28px 0 0;padding-right:20px;border-right:3px solid #a9b4bb;max-width:460px;font-size:clamp(16px,1.5vw,18px);font-weight:400;line-height:2;color:#4B5258;text-wrap:pretty">اگر تا امروز از شکوه و عظمت زیست‌شناسی بی‌خبر بوده‌اید، این کتاب پنجره‌ای نو به رویتان باز می‌کند.</p>
-            <a href="{{ featured.href }}" style="margin-top:32px;display:inline-flex;gap:12px;align-items:center;padding:13px 26px;border-radius:10px;background:var(--ac,#343F4A);color:#ffffff;font-size:14px;font-weight:500;line-height:1.5;transition:background .35s ease,transform .5s cubic-bezier(.2,.7,.2,1)" style-hover="background:#302C29;color:#ffffff;transform:translateY(-2px)"><span>دربارهٔ {{ featured.title }}</span><span>←</span></a>
+            <div data-m="h-auth" style="margin-top:18px;display:flex;flex-direction:column;gap:6px;font-size:16px;font-weight:500;line-height:1.9;color:#343F4A"><span>{{ featured.author }}</span><span>{{ featured.translatorLine }}</span></div>
+            <p data-m="h-desc" style="margin:28px 0 0;padding-right:20px;border-right:3px solid #a9b4bb;max-width:460px;font-size:clamp(16px,1.5vw,18px);font-weight:400;line-height:2;color:#4B5258;text-wrap:pretty">اگر تا امروز از شکوه و عظمت زیست‌شناسی بی‌خبر بوده‌اید، این کتاب پنجره‌ای نو به رویتان باز می‌کند.</p>
+            <a data-m="h-btn" href="{{ featured.href }}" style="margin-top:32px;display:inline-flex;gap:12px;align-items:center;padding:13px 26px;border-radius:10px;background:var(--ac,#343F4A);color:#ffffff;font-size:14px;font-weight:500;line-height:1.5;transition:background .35s ease,transform .5s cubic-bezier(.2,.7,.2,1)" style-hover="background:#302C29;color:#ffffff;transform:translateY(-2px)"><span>دربارهٔ {{ featured.title }}</span><span>←</span></a>
           </div>
         </div>
       </section>
       <div style="position:relative;z-index:1;background:var(--soft,#f1eee7)">
-      <section style="max-width:1320px;margin:0 auto;padding:clamp(80px,9vw,130px) clamp(40px,8vw,112px) clamp(96px,11vw,160px)">
-        <div style="display:flex;align-items:center;gap:clamp(20px,3vw,40px);width:100%;margin-bottom:clamp(48px,6vw,80px)">
+      <section data-m="sec-books" style="max-width:1320px;margin:0 auto;padding:clamp(80px,9vw,130px) var(--px,clamp(40px,8vw,112px)) clamp(96px,11vw,160px)">
+        <div data-m="sec-title" style="display:flex;align-items:center;gap:clamp(20px,3vw,40px);width:100%;margin-bottom:clamp(48px,6vw,80px)">
             <span aria-hidden="true" style="flex:1 1 0;min-width:24px;height:4px;background:linear-gradient(#D8D7CE,#D8D7CE) center/100% 1px no-repeat"></span>
             <a href="#/books" style="flex:0 0 auto;color:#302C29;transition:opacity .3s" style-hover="opacity:.7"><h2 style="margin:0;font-size:clamp(26px,2.6vw,32px);font-weight:700;line-height:1.4;text-align:center">کتاب‌ها</h2></a>
             <span aria-hidden="true" style="flex:1 1 0;min-width:24px;height:4px;background:linear-gradient(#D8D7CE,#D8D7CE) center/100% 1px no-repeat"></span>
           </div>
-        <div style="max-width:1040px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,190px),1fr));gap:clamp(40px,5vw,72px) clamp(24px,3vw,48px)">
+        <div data-m="bgrid" style="max-width:1040px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,190px),1fr));gap:clamp(40px,5vw,72px) clamp(24px,3vw,48px)">
           <sc-for list="{{ homeBooks }}" as="b" hint-placeholder-count="7">
             <a href="{{ b.href }}" style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px">
               <div style="width:100%;aspect-ratio:2/3;overflow:hidden;background:#f1eee7;outline:1px solid rgba(48,44,41,.12);outline-offset:-1px;box-shadow:0 1px 2px rgba(48,44,41,.10),0 26px 44px -26px rgba(48,44,41,.45)">
                 <img src="{{ b.cover }}" alt="{{ b.title }}" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.04)">
               </div>
-              <span style="font-size:clamp(16px,1.4vw,17px);font-weight:500;line-height:1.6;color:#302C29;max-width:260px;text-wrap:balance">{{ b.hook }}</span>
-              <span style="font-size:14px;font-weight:500;line-height:1.5;color:#302C29;border-bottom:1px solid #302C29;padding-bottom:2px;margin-top:-8px">بیشتر بخوانید ←</span>
+              <span data-m="bhook" style="font-size:clamp(16px,1.4vw,17px);font-weight:500;line-height:1.6;color:#302C29;max-width:260px;text-wrap:balance">{{ b.hook }}</span>
+              <span style="font-size:14px;font-weight:500;line-height:1.5;color:#302C29;border-bottom:1px solid #302C29;padding-bottom:2px;margin-top:-8px;transition:color .3s ease,border-color .3s ease" style-hover="color:#6B7F6A;border-color:#6B7F6A">بیشتر بخوانید ←</span>
             </a>
           </sc-for>
         </div>
-        <div style="display:flex;justify-content:center;margin-top:clamp(56px,7vw,88px)">
+        <div data-m="morebtn" style="display:flex;justify-content:center;margin-top:clamp(56px,7vw,88px)">
           <a href="#/books" style="display:inline-flex;gap:12px;align-items:center;padding:13px 26px;border-radius:10px;background:var(--ac,#343F4A);color:#ffffff;font-size:17px;font-weight:500;line-height:1.5;white-space:nowrap;transition:background .35s ease,transform .5s cubic-bezier(.2,.7,.2,1)" style-hover="background:#302C29;color:#ffffff;transform:translateY(-2px)"><span>همهٔ کتاب‌ها</span><span>←</span></a>
         </div>
       </section>
 
 
       <sc-if value="{{ hasHomeTexts }}" hint-placeholder-val="{{ true }}">
-      <section style="padding:0 clamp(40px,10vw,112px)">
-        <div style="max-width:976px;margin:0 auto;background:#E1E5E7;color:#302C29;border-radius:18px;padding:clamp(40px,4.5vw,60px) clamp(24px,5vw,56px) clamp(48px,5vw,64px);display:flex;flex-direction:column;align-items:center">
-          <div style="display:flex;align-items:center;gap:clamp(20px,3vw,40px);width:100%;margin-bottom:clamp(36px,4vw,52px)">
+      <section style="padding:0 var(--px,clamp(40px,10vw,112px))">
+        <div data-m="tbox" style="max-width:976px;margin:0 auto;background:#E1E5E7;color:#302C29;border-radius:18px;padding:clamp(40px,4.5vw,60px) clamp(24px,5vw,56px) clamp(48px,5vw,64px);display:flex;flex-direction:column;align-items:center">
+          <div data-m="sec-title" style="display:flex;align-items:center;gap:clamp(20px,3vw,40px);width:100%;margin-bottom:clamp(36px,4vw,52px)">
             <span aria-hidden="true" style="flex:1 1 0;min-width:24px;height:4px;background:linear-gradient(#D8D7CE,#D8D7CE) center/100% 1px no-repeat"></span>
             <a href="#/texts" style="flex:0 0 auto;color:#302C29;transition:opacity .3s" style-hover="opacity:.7"><h2 style="margin:0;font-size:clamp(26px,2.6vw,32px);font-weight:700;line-height:1.4;text-align:center">از متن‌ها</h2></a>
             <span aria-hidden="true" style="flex:1 1 0;min-width:24px;height:4px;background:linear-gradient(#D8D7CE,#D8D7CE) center/100% 1px no-repeat"></span>
           </div>
-          <div style="width:100%;display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(32px,4vw,56px)">
+          <div data-m="tlist" style="width:100%;display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(32px,4vw,56px)">
             <sc-for list="{{ homeTexts }}" as="t" hint-placeholder-count="1">
-              <a href="{{ t.href }}" target="{{ t.target }}" rel="noopener" style="flex:1 1 240px;max-width:420px;display:flex;flex-direction:column;gap:12px">
+              <a data-m="tcard" href="{{ t.href }}" target="{{ t.target }}" rel="noopener" style="flex:1 1 240px;max-width:420px;display:flex;flex-direction:column;gap:12px">
                 <span style="align-self:flex-start;font-size:13px;font-weight:500;line-height:1.5;color:#302C29;border:1px solid rgba(48,44,41,.3);border-radius:8px;padding:3px 12px">{{ t.catLabel }}</span>
                 <span style="font-size:clamp(18px,1.7vw,20px);font-weight:700;line-height:1.6;color:#302C29;margin-top:4px">{{ t.title }}</span>
                 <span style="font-size:14px;font-weight:500;line-height:1.7;color:#5f5a54">{{ t.byline }}</span>
@@ -115,15 +189,15 @@ a:hover{color:#343F4A}
               </a>
             </sc-for>
           </div>
-          <a href="#/texts" style="margin-top:clamp(40px,5vw,56px);display:inline-flex;gap:12px;align-items:center;padding:13px 26px;border-radius:10px;background:var(--ac,#343F4A);color:#ffffff;font-size:17px;font-weight:500;line-height:1.5;white-space:nowrap;transition:background .35s ease,transform .5s cubic-bezier(.2,.7,.2,1)" style-hover="background:#302C29;color:#ffffff;transform:translateY(-2px)"><span>همهٔ متن‌ها</span><span>←</span></a>
+          <a data-m="tbtn" href="#/texts" style="margin-top:clamp(40px,5vw,56px);display:inline-flex;gap:12px;align-items:center;padding:13px 26px;border-radius:10px;background:var(--ac,#343F4A);color:#ffffff;font-size:17px;font-weight:500;line-height:1.5;white-space:nowrap;transition:background .35s ease,transform .5s cubic-bezier(.2,.7,.2,1)" style-hover="background:#302C29;color:#ffffff;transform:translateY(-2px)"><span>همهٔ متن‌ها</span><span>←</span></a>
         </div>
       </section>
       </sc-if>
 
       <sc-if value="{{ hasHomeSessions }}" hint-placeholder-val="{{ false }}">
-      <section style="max-width:1200px;margin:0 auto;padding:clamp(80px,10vw,140px) clamp(40px,10vw,112px) 0">
+      <section data-m="sess" style="max-width:1200px;margin:0 auto;padding:clamp(80px,10vw,140px) var(--px,clamp(40px,10vw,112px)) 0">
         <div style="max-width:976px;margin:0 auto">
-          <div style="display:flex;align-items:center;gap:clamp(20px,3vw,40px);width:100%;margin-bottom:clamp(32px,4vw,48px)">
+          <div data-m="sec-title" style="display:flex;align-items:center;gap:clamp(20px,3vw,40px);width:100%;margin-bottom:clamp(32px,4vw,48px)">
             <span aria-hidden="true" style="flex:1 1 0;min-width:24px;height:4px;background:linear-gradient(#D8D7CE,#D8D7CE) center/100% 1px no-repeat"></span>
             <h2 style="margin:0;font-size:clamp(26px,2.6vw,32px);font-weight:700;line-height:1.4;flex:0 0 auto;text-align:center">نشست‌ها و کارگاه‌ها</h2>
             <span aria-hidden="true" style="flex:1 1 0;min-width:24px;height:4px;background:linear-gradient(#D8D7CE,#D8D7CE) center/100% 1px no-repeat"></span>
@@ -145,13 +219,13 @@ a:hover{color:#343F4A}
       </sc-if>
 
       <section>
-        <div style="max-width:1200px;margin:0 auto;padding:clamp(80px,10vw,140px) clamp(40px,10vw,112px) clamp(120px,14vw,200px)">
-        <div style="background:#FAF8F4;border-radius:18px;padding:clamp(28px,4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(32px,5vw,72px);align-items:start">
+        <div data-m="about-outer" style="max-width:1200px;margin:0 auto;padding:clamp(80px,10vw,140px) var(--px,clamp(40px,10vw,112px)) clamp(120px,14vw,200px)">
+        <div data-m="about-box" style="background:#FAF8F4;border-radius:18px;padding:clamp(28px,4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(32px,5vw,72px);align-items:start">
           <div style="display:flex;flex-direction:column;gap:clamp(20px,2.4vw,32px)">
-            <h2 style="margin:0;font-size:clamp(26px,2.6vw,32px);font-weight:700;line-height:1.4">آرش فرزاد</h2>
+            <h2 data-m="about-h" style="margin:0;font-size:clamp(26px,2.6vw,32px);font-weight:700;line-height:1.4">آرش فرزاد</h2>
             <p style="margin:0;font-size:clamp(16px,1.4vw,17px);font-weight:400;line-height:1.9;color:#302C29;text-wrap:pretty">من مترجم کتابم و در یک دههٔ گذشته، در زمینه‌های گوناگونی از فلسفه و روان‌کاوی تا علوم زیستی ترجمه کرده‌ام. چند سالی است که با نشر نو کار می‌کنم. علاقه به کتاب، زبان‌ورزی، و کنجکاوی در اندیشه‌ها مرا به ترجمه کشانده است. در انتخاب کتاب‌ها به دنبال آثاری هستم که خواندنشان چیزی به دانش و تجربهٔ خوانندگان فارسی‌زبان اضافه کند.</p>
           </div>
-          <div style="aspect-ratio:4/5;overflow:hidden;background:#f1eee7;width:min(100%,204px);justify-self:end;border-radius:12px">
+          <div data-m="about-photo" style="aspect-ratio:4/5;overflow:hidden;background:#f1eee7;width:min(100%,204px);justify-self:end;border-radius:12px">
             <img src="assets/arash-farzad.png" alt="آرش فرزاد" style="width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block;transition:transform 1.4s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.03)">
           </div>
         </div>
@@ -164,8 +238,8 @@ a:hover{color:#343F4A}
     
     
     <sc-if value="{{ isTexts }}" hint-placeholder-val="{{ false }}">
-      <section data-screen-label="Texts" style="max-width:1100px;margin:0 auto;padding:clamp(48px,8vw,110px) clamp(40px,10vw,112px) clamp(80px,10vw,140px)">
-        <h1 style="margin:0 0 28px;font-size:clamp(32px,3.4vw,42px);font-weight:700;line-height:1.4">متن‌ها</h1>
+      <section data-m="page" data-screen-label="Texts" style="max-width:1100px;margin:0 auto;padding:clamp(48px,8vw,110px) var(--px,clamp(40px,10vw,112px)) clamp(80px,10vw,140px)">
+        <h1 data-m="h1" style="margin:0 0 28px;font-size:clamp(32px,3.4vw,42px);font-weight:700;line-height:1.4">متن‌ها</h1>
         <nav style="display:flex;gap:clamp(24px,3.4vw,48px);flex-wrap:wrap;border-bottom:1px solid #D8D7CE">
           <sc-for list="{{ textTabs }}" as="tb" hint-placeholder-count="3">
             <a href="{{ tb.href }}" style="display:flex;gap:8px;align-items:baseline;padding:12px 0;margin-bottom:-1px;font-size:16px;font-weight:{{ tb.fw }};line-height:1.5;color:{{ tb.color }};border-bottom:2px solid {{ tb.line }};transition:color .3s" style-hover="color:#302C29"><span>{{ tb.label }}</span></a>
@@ -192,10 +266,10 @@ a:hover{color:#343F4A}
     </sc-if>
 
     <sc-if value="{{ isText }}" hint-placeholder-val="{{ false }}">
-      <article data-screen-label="Text" style="max-width:760px;margin:0 auto;padding:clamp(40px,6vw,80px) clamp(40px,10vw,112px) clamp(80px,10vw,140px)">
+      <article data-m="page" data-screen-label="Text" style="max-width:760px;margin:0 auto;padding:clamp(40px,6vw,80px) var(--px,clamp(40px,10vw,112px)) clamp(80px,10vw,140px)">
         <a href="{{ text.backHref }}" style="display:inline-flex;gap:10px;font-size:14px;font-weight:500;line-height:1.5;color:#5f5a54;margin-bottom:clamp(32px,5vw,56px)"><span>→</span><span>{{ text.catPlural }}</span></a>
         <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;font-size:13px;color:#6B7F6A"><span style="align-self:flex-start;font-size:13px;font-weight:500;line-height:1.5;color:#302C29;border:1px solid rgba(48,44,41,.3);border-radius:8px;padding:3px 12px">{{ text.catLabel }}</span><span>{{ text.meta }}</span></div>
-        <h1 style="margin:18px 0 12px;font-size:clamp(32px,3.4vw,42px);font-weight:700;line-height:1.4;text-wrap:balance">{{ text.title }}</h1>
+        <h1 data-m="h1" style="margin:18px 0 12px;font-size:clamp(32px,3.4vw,42px);font-weight:700;line-height:1.4;text-wrap:balance">{{ text.title }}</h1>
         <div style="font-size:16px;font-weight:500;line-height:1.9;margin-bottom:clamp(32px,4vw,48px)">{{ text.byline }}</div>
         <div style="display:flex;flex-direction:column;gap:24px">
           <sc-for list="{{ text.body }}" as="p" hint-placeholder-count="2">
@@ -206,21 +280,21 @@ a:hover{color:#343F4A}
     </sc-if>
 
     <sc-if value="{{ isContact }}" hint-placeholder-val="{{ false }}">
-      <section data-screen-label="Contact" style="max-width:820px;margin:0 auto;padding:clamp(48px,8vw,110px) clamp(40px,10vw,112px) clamp(80px,10vw,140px)">
-        <h1 style="margin:0 0 28px;font-size:clamp(32px,3.4vw,42px);font-weight:700;line-height:1.4">تماس</h1>
+      <section data-m="page" data-screen-label="Contact" style="max-width:820px;margin:0 auto;padding:clamp(48px,8vw,110px) var(--px,clamp(40px,10vw,112px)) clamp(80px,10vw,140px)">
+        <h1 data-m="h1" style="margin:0 0 28px;font-size:clamp(32px,3.4vw,42px);font-weight:700;line-height:1.4">تماس</h1>
         <p style="margin:0 0 clamp(40px,5vw,64px);font-size:17px;font-weight:400;line-height:1.9;color:#302C29;text-align:right;text-wrap:pretty">برای تماس با من می‌توانید ایمیل بنویسید یا در تلگرام و اینستاگرام  پیام بفرستید.</p>
         <div style="display:flex;flex-direction:column;border-top:1px solid #D8D7CE">
-            <a href="mailto:arashfarzad25@gmail.com" style="display:flex;align-items:center;gap:18px;padding:22px 0;border-bottom:1px solid #D8D7CE;color:#302C29;transition:color .3s" style-hover="color:#6B7F6A">
+            <a href="mailto:arashfarzad25@gmail.com" data-m="crow" style="display:flex;align-items:center;gap:18px;padding:22px 0;border-bottom:1px solid #D8D7CE;color:#302C29;transition:color .3s" style-hover="color:#6B7F6A">
               <span style="display:flex;color:var(--ac,#343F4A)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3.5 6.5l8.5 7 8.5-7"></path></svg></span>
               <span style="font-size:15px;font-weight:500;line-height:1.5;color:#5f5a54;min-width:80px">ایمیل</span>
               <span dir="ltr" style="font-size:17px;font-weight:500;line-height:1.5;margin-inline-start:auto">arashfarzad25@gmail.com</span>
             </a>
-            <a href="https://t.me/arashfarzad" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:18px;padding:22px 0;border-bottom:1px solid #D8D7CE;color:#302C29;transition:color .3s" style-hover="color:#6B7F6A">
+            <a href="https://t.me/arashfarzad" target="_blank" rel="noopener" data-m="crow" style="display:flex;align-items:center;gap:18px;padding:22px 0;border-bottom:1px solid #D8D7CE;color:#302C29;transition:color .3s" style-hover="color:#6B7F6A">
               <span style="display:flex;color:var(--ac,#343F4A)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M21.5 4.2L2.8 11.3c-.9.4-.9 1.1 0 1.4l4.7 1.5 1.8 5.6c.2.6.4.8.9.8.4 0 .6-.2.9-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.8c.3-1.3-.5-1.9-1.5-1.6z"></path><path d="M7.5 14.2l10-6.3-7.6 7.4"></path></svg></span>
               <span style="font-size:15px;font-weight:500;line-height:1.5;color:#5f5a54;min-width:80px">تلگرام</span>
               <span dir="ltr" style="font-size:17px;font-weight:500;line-height:1.5;margin-inline-start:auto">t.me/arashfarzad</span>
             </a>
-            <a href="https://www.instagram.com/arash_farzad_/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:18px;padding:22px 0;border-bottom:1px solid #D8D7CE;color:#302C29;transition:color .3s" style-hover="color:#6B7F6A">
+            <a href="https://www.instagram.com/arash_farzad_/" target="_blank" rel="noopener" data-m="crow" style="display:flex;align-items:center;gap:18px;padding:22px 0;border-bottom:1px solid #D8D7CE;color:#302C29;transition:color .3s" style-hover="color:#6B7F6A">
               <span style="display:flex;color:var(--ac,#343F4A)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"></circle></svg></span>
               <span style="font-size:15px;font-weight:500;line-height:1.5;color:#5f5a54;min-width:80px">اینستاگرام</span>
               <span dir="ltr" style="font-size:17px;font-weight:500;line-height:1.5;margin-inline-start:auto">@Arash_Farzad_</span>
@@ -230,8 +304,8 @@ a:hover{color:#343F4A}
     </sc-if>
 
     <sc-if value="{{ isSessions }}" hint-placeholder-val="{{ false }}">
-      <section data-screen-label="Sessions" style="max-width:1100px;margin:0 auto;padding:clamp(48px,8vw,110px) clamp(40px,10vw,112px) clamp(80px,10vw,140px)">
-        <h1 style="margin:0 0 28px;font-size:clamp(32px,3.4vw,42px);font-weight:700;line-height:1.4">نشست‌ها</h1>
+      <section data-m="page" data-screen-label="Sessions" style="max-width:1100px;margin:0 auto;padding:clamp(48px,8vw,110px) var(--px,clamp(40px,10vw,112px)) clamp(80px,10vw,140px)">
+        <h1 data-m="h1" style="margin:0 0 28px;font-size:clamp(32px,3.4vw,42px);font-weight:700;line-height:1.4">نشست‌ها</h1>
         <div style="display:flex;flex-direction:column;gap:clamp(56px,7vw,96px);margin-top:clamp(24px,3vw,40px)">
           <sc-for list="{{ sessionGroups }}" as="g" hint-placeholder-count="2">
             <div>
@@ -259,23 +333,23 @@ a:hover{color:#343F4A}
     </sc-if>
 
     <sc-if value="{{ isBooks }}" hint-placeholder-val="{{ false }}">
-      <section data-screen-label="Books" style="max-width:1240px;margin:0 auto;padding:clamp(48px,8vw,110px) clamp(40px,10vw,112px) 40px">
+      <section data-m="page" data-screen-label="Books" style="max-width:1240px;margin:0 auto;padding:clamp(48px,8vw,110px) var(--px,clamp(40px,10vw,112px)) 40px">
         <div style="display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:clamp(40px,6vw,80px)">
-          <h1 style="margin:0;font-size:clamp(32px,3.4vw,42px);font-weight:700;line-height:1.4">کتاب‌ها</h1>
+          <h1 data-m="h1" style="margin:0;font-size:clamp(32px,3.4vw,42px);font-weight:700;line-height:1.4">کتاب‌ها</h1>
         </div>
 
         <sc-if value="{{ isList }}" hint-placeholder-val="{{ true }}">
           <div style="display:flex;flex-direction:column">
             <sc-for list="{{ books }}" as="b" hint-placeholder-count="3">
-              <article style="display:grid;grid-template-columns:minmax(110px,230px) minmax(0,1fr);gap:clamp(24px,5vw,72px);padding:clamp(40px,5vw,64px) 0;border-top:1px solid #dcd6cc;align-items:start">
-                <a href="{{ b.href }}" style="display:block">
+              <article data-m="blist" style="display:grid;grid-template-columns:minmax(110px,230px) minmax(0,1fr);gap:clamp(24px,5vw,72px);padding:clamp(40px,5vw,64px) 0;border-top:1px solid #dcd6cc;align-items:start">
+                <a data-m="blist-cover" href="{{ b.href }}" style="display:block">
                   <img src="{{ b.cover }}" alt="{{ b.title }}" style="width:100%;display:block;outline:1px solid rgba(48,44,41,.12);outline-offset:-1px;box-shadow:0 1px 2px rgba(48,44,41,.12),0 22px 38px -22px rgba(48,44,41,.5);transition:transform .6s cubic-bezier(.2,.7,.2,1)" style-hover="transform:translateY(-8px)">
                 </a>
                 <div style="display:flex;flex-direction:column;gap:14px;padding-top:4px;min-width:0">
                   <div style="display:flex;gap:16px;font-size:13px;color:#5f5a54">
                                         <span>{{ b.subject }}</span>
                   </div>
-                  <a href="{{ b.href }}"><h2 style="margin:0;font-size:clamp(26px,2.6vw,32px);font-weight:700;line-height:1.4">{{ b.title }}</h2></a>
+                  <a href="{{ b.href }}"><h2 data-m="blist-title" style="margin:0;font-size:clamp(26px,2.6vw,32px);font-weight:700;line-height:1.4">{{ b.title }}</h2></a>
                   <div dir="ltr" style="text-align:right;font-size:13px;font-weight:400;color:#5f5a54;letter-spacing:.01em">{{ b.en }}</div>
                   <div style="font-size:15px;font-weight:400;line-height:1.9">{{ b.author }}<br><span style="color:#5f5a54">{{ b.translatorLine }}</span></div>
                   <p style="margin:8px 0 0;max-width:640px;font-size:clamp(15px,1.3vw,16px);font-weight:400;line-height:1.9;color:#302C29;text-align:right;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden">{{ b.excerpt }}</p>
@@ -292,7 +366,7 @@ a:hover{color:#343F4A}
         </sc-if>
 
         <sc-if value="{{ isGrid }}" hint-placeholder-val="{{ false }}">
-          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,190px),1fr));gap:clamp(36px,5vw,64px) clamp(24px,4vw,48px);border-top:1px solid #dcd6cc;padding-top:56px">
+          <div data-m="bgrid2" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,190px),1fr));gap:clamp(36px,5vw,64px) clamp(24px,4vw,48px);border-top:1px solid #dcd6cc;padding-top:56px">
             <sc-for list="{{ books }}" as="b" hint-placeholder-count="6">
               <a href="{{ b.href }}" style="display:flex;flex-direction:column;gap:14px">
                 <div style="aspect-ratio:2/3;display:flex;align-items:flex-end">
@@ -308,15 +382,15 @@ a:hover{color:#343F4A}
     </sc-if>
 
     <sc-if value="{{ isBook }}" hint-placeholder-val="{{ false }}">
-      <section data-screen-label="Book" style="max-width:1240px;margin:0 auto;padding:clamp(32px,5vw,64px) clamp(40px,10vw,112px) 40px">
+      <section data-m="page" data-screen-label="Book" style="max-width:1240px;margin:0 auto;padding:clamp(32px,5vw,64px) var(--px,clamp(40px,10vw,112px)) 40px">
         <a href="#/books" style="display:inline-flex;gap:10px;font-size:14px;font-weight:500;line-height:1.5;color:#5f5a54;margin-bottom:clamp(32px,5vw,64px)"><span>→</span><span>همهٔ کتاب‌ها</span></a>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(40px,7vw,110px);align-items:start">
-          <div style="position:sticky;top:40px;display:flex;justify-content:center;background:var(--soft,#f1eee7);border-radius:18px;padding:clamp(36px,6vw,80px);transition:background .6s ease">
+        <div data-m="bk-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(40px,7vw,110px);align-items:start">
+          <div data-m="bk-cover" style="position:sticky;top:40px;display:flex;justify-content:center;background:var(--soft,#f1eee7);border-radius:18px;padding:clamp(36px,6vw,80px);transition:background .6s ease">
             <img src="{{ book.cover }}" alt="{{ book.title }}" style="width:min(100%,360px);display:block;outline:1px solid rgba(48,44,41,.12);outline-offset:-1px;box-shadow:0 1px 2px rgba(48,44,41,.12),0 40px 60px -34px rgba(48,44,41,.55)">
           </div>
           <div style="display:flex;flex-direction:column;min-width:0;position:relative">
             <div style="font-size:14px;font-weight:500;color:var(--ac,#343F4A);margin-bottom:20px;position:relative">{{ book.subject }}</div>
-            <h1 style="margin:0;font-size:clamp(32px,3.4vw,42px);font-weight:700;line-height:1.4;text-wrap:balance">{{ book.title }}</h1>
+            <h1 data-m="bk-title" style="margin:0;font-size:clamp(32px,3.4vw,42px);font-weight:700;line-height:1.4;text-wrap:balance">{{ book.title }}</h1>
             <sc-if value="{{ book.subtitle }}" hint-placeholder-val="{{ true }}">
               <div style="font-size:clamp(16px,1.5vw,18px);font-weight:400;color:#5f5a54;margin-top:14px;line-height:1.9">{{ book.subtitle }}</div>
             </sc-if>
@@ -331,7 +405,7 @@ a:hover{color:#343F4A}
               <span style="font-size:13px;font-weight:400;color:#6B7F6A;margin-top:6px">{{ book.factLine }}</span>
             </div>
 
-            <div style="margin-top:44px;background:var(--soft,#f1eee7);border-radius:16px;padding:clamp(24px,3vw,36px);display:flex;flex-direction:column;gap:22px;position:relative">
+            <div data-m="buybox" style="margin-top:44px;background:var(--soft,#f1eee7);border-radius:16px;padding:clamp(24px,3vw,36px);display:flex;flex-direction:column;gap:22px;position:relative">
               <div style="display:flex;align-items:center;gap:16px">
                 <svg width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="var(--ac,#343F4A)" stroke-width="1.8" stroke-linejoin="round"><path d="M24 13c-4-3-10-4-17-3v26c7-1 13 0 17 3 4-3 10-4 17-3V10c-7-1-13 0-17 3z"></path><path d="M24 13v26"></path><path d="M11 17c3.5-.3 6.6.2 9 1.4M11 23c3.5-.3 6.6.2 9 1.4M28 18.4c2.4-1.2 5.5-1.7 9-1.4M28 24.4c2.4-1.2 5.5-1.7 9-1.4"></path></svg>
                 <div style="display:flex;flex-direction:column">
@@ -339,7 +413,7 @@ a:hover{color:#343F4A}
                   <span style="font-size:13px;font-weight:400;color:#5f5a54">نسخهٔ چاپی، الکترونیکی یا صوتی</span>
                 </div>
               </div>
-              <div style="display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:8px">
+              <div data-m="buy" style="display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:8px">
                 <sc-for list="{{ book.buy }}" as="l" hint-placeholder-count="2">
                   <a href="{{ l.href }}" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;text-align:center;gap:8px;min-width:0;padding:13px 6px;border-radius:10px;line-height:1.5;font-size:clamp(12.5px,1.1vw,14px);background:{{ l.bg }};color:{{ l.fg }};border:1px solid var(--ac,#343F4A);font-weight:500;transition:background .35s,color .35s,border-color .35s,transform .45s cubic-bezier(.2,.7,.2,1)" style-hover="background:#302C29;border-color:#302C29;color:#fff;transform:translateY(-2px)"><span>{{ l.label }}</span></a>
                 </sc-for>
@@ -385,14 +459,14 @@ a:hover{color:#343F4A}
         </div>
 
         <sc-if value="{{ book.hasReviews }}" hint-placeholder-val="{{ false }}">
-          <div style="margin-top:clamp(80px,10vw,140px);display:flex;justify-content:center;text-align:center">
+          <div data-m="gap-l" style="margin-top:clamp(80px,10vw,140px);display:flex;justify-content:center;text-align:center">
             <div style="display:flex;flex-direction:column;align-items:center;gap:20px;width:100%;max-width:720px;background:#CEDFEA;border-radius:18px;padding:clamp(32px,4.5vw,56px) clamp(24px,4.5vw,56px)">
               <div style="display:inline-flex;align-items:center;font-size:18px;font-weight:700;line-height:1.5;color:var(--ac,#343F4A);border:1px solid var(--ac,#343F4A);border-radius:8px;padding:6px 18px">از متن کتاب</div>
               <blockquote style="margin:0;font-size:clamp(17px,1.6vw,19px);line-height:1.9;font-weight:400;color:#302C29;text-align:right;text-wrap:pretty">«{{ book.pullQuote }}»</blockquote>
             </div>
 
           </div>
-          <div style="margin-top:clamp(56px,7vw,96px);background:var(--soft,#f1eee7);border-radius:18px;padding:clamp(32px,5vw,64px) clamp(40px,8vw,112px);display:flex;flex-wrap:wrap;gap:clamp(32px,4vw,56px);align-items:center;justify-content:center">
+          <div data-m="rvbox" style="margin-top:clamp(56px,7vw,96px);background:var(--soft,#f1eee7);border-radius:18px;padding:clamp(32px,5vw,64px) var(--px,clamp(40px,8vw,112px));display:flex;flex-wrap:wrap;gap:clamp(32px,4vw,56px);align-items:center;justify-content:center">
             <img src="{{ book.cover }}" alt="{{ book.title }}" style="flex:0 0 auto;width:clamp(96px,10vw,130px);display:block;transform:rotate(-3deg);box-shadow:24px 30px 40px -24px rgba(48,44,41,.55)">
             <div style="display:flex;flex-direction:column;gap:18px;flex:1 1 360px;min-width:0">
               <h3 style="margin:0 0 6px;font-size:clamp(26px,2.6vw,32px);font-weight:700;line-height:1.4;text-align:center">دیدگاه دیگران</h3>
@@ -406,12 +480,12 @@ a:hover{color:#343F4A}
           </div>
         </sc-if>
 
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:clamp(80px,10vw,140px);border-top:1px solid #dcd6cc;padding-top:32px">
+        <div data-m="pn" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:clamp(80px,10vw,140px);border-top:1px solid #dcd6cc;padding-top:32px">
           <a href="{{ prev.href }}" style="display:flex;align-items:center;gap:20px">
             <img src="{{ prev.cover }}" alt="" style="width:clamp(80px,9vw,110px);display:block;outline:1px solid rgba(48,44,41,.12);outline-offset:-1px;box-shadow:0 18px 30px -16px rgba(48,44,41,.55);transition:transform .5s cubic-bezier(.2,.7,.2,1)" style-hover="transform:translateY(-4px)">
             <div><div style="font-size:13px;font-weight:400;color:#5f5a54">کتاب قبلی</div><div style="font-size:clamp(16px,1.4vw,17px);font-weight:500;line-height:1.6;margin-top:6px">{{ prev.title }}</div></div>
           </a>
-          <a href="{{ next.href }}" style="display:flex;align-items:center;gap:20px;flex-direction:row-reverse;text-align:left">
+          <a data-m="next" href="{{ next.href }}" style="display:flex;align-items:center;gap:20px;flex-direction:row-reverse;text-align:left">
             <img src="{{ next.cover }}" alt="" style="width:clamp(80px,9vw,110px);display:block;outline:1px solid rgba(48,44,41,.12);outline-offset:-1px;box-shadow:0 18px 30px -16px rgba(48,44,41,.55);transition:transform .5s cubic-bezier(.2,.7,.2,1)" style-hover="transform:translateY(-4px)">
             <div><div style="font-size:13px;font-weight:400;color:#5f5a54">کتاب بعدی</div><div style="font-size:clamp(16px,1.4vw,17px);font-weight:500;line-height:1.6;margin-top:6px">{{ next.title }}</div></div>
           </a>
@@ -422,14 +496,14 @@ a:hover{color:#343F4A}
       </main>
 
   <footer ref="{{ footerRef }}" id="contact" style="background:var(--ac,#343F4A);color:#ffffff;transition:background .6s ease">
-    <div style="max-width:1320px;margin:0 auto;padding:38px clamp(40px,8vw,112px);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;font-size:14px">
+    <div data-m="foot" style="max-width:1320px;margin:0 auto;padding:38px var(--px,clamp(40px,8vw,112px));display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;font-size:14px">
       <span style="font-size:15px;font-weight:500">آرش فرزاد</span>
       <div style="display:flex;gap:28px">
         <a href="#/books" style="color:#ffffff">کتاب‌ها</a>
         <a href="#/texts" style="color:#ffffff">متن‌ها</a>
         <a href="#/sessions" style="color:#ffffff">نشست‌ها</a>
       </div>
-      <div style="display:flex;gap:32px;align-items:center;flex-wrap:wrap">
+      <div data-m="foot-links" style="display:flex;gap:32px;align-items:center;flex-wrap:wrap">
         <a href="https://www.instagram.com/arash_farzad_/" target="_blank" rel="noopener" aria-label="اینستاگرام" dir="ltr" style="display:flex;gap:10px;align-items:center;color:#ffffff"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"></circle></svg><span>@Arash_Farzad_</span></a>
         <a href="https://t.me/arashfarzad" target="_blank" rel="noopener" aria-label="تلگرام" dir="ltr" style="display:flex;gap:10px;align-items:center;color:#ffffff"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M21.5 4.2L2.8 11.3c-.9.4-.9 1.1 0 1.4l4.7 1.5 1.8 5.6c.2.6.4.8.9.8.4 0 .6-.2.9-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.8c.3-1.3-.5-1.9-1.5-1.6z"></path><path d="M7.5 14.2l10-6.3-7.6 7.4"></path></svg><span>t.me/arashfarzad</span></a>
         <a href="mailto:arashfarzad25@gmail.com" aria-label="ایمیل" dir="ltr" style="display:flex;gap:10px;align-items:center;color:#ffffff"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="1.5"></rect><path d="M3.5 6l8.5 7 8.5-7"></path></svg><span>arashfarzad25@gmail.com</span></a>
@@ -440,8 +514,11 @@ a:hover{color:#343F4A}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;palette&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;idyll&quot;,&quot;deep&quot;,&quot;sage&quot;],&quot;default&quot;:&quot;idyll&quot;,&quot;tsType&quot;:&quot;'idyll'|'deep'|'sage'&quot;},&quot;booksLayout&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;list&quot;,&quot;grid&quot;],&quot;default&quot;:&quot;list&quot;,&quot;tsType&quot;:&quot;'list'|'grid'&quot;},&quot;background&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;paper&quot;,&quot;white&quot;],&quot;default&quot;:&quot;paper&quot;,&quot;tsType&quot;:&quot;'paper'|'white'&quot;}}">
 class Component extends DCLogic {
-  state = { route: this.parse(), books: window.BOOKS || [] };
+  state = { route: this.parse(), books: window.BOOKS || [], menuOpen: false };
   footerRef = React.createRef();
+  toggleMenu = () => this.setState(s => ({ menuOpen: !s.menuOpen }));
+  closeMenu = () => { if (this.state.menuOpen) this.setState({ menuOpen: false }); };
+  onResizeMenu = () => { if (window.innerWidth > 820) this.closeMenu(); };
   goContact = (e) => { if (e && e.preventDefault) e.preventDefault(); const f = this.footerRef.current; if (f) window.scrollTo({ top: f.getBoundingClientRect().top + window.scrollY, behavior: 'smooth' }); };
   rootRef = React.createRef();
   heroEl = null;
@@ -474,6 +551,8 @@ class Component extends DCLogic {
     document.body.style.background = bg;
   }
   componentDidMount() {
+    window.addEventListener('hashchange', this.closeMenu);
+    window.addEventListener('resize', this.onResizeMenu);
     this.applyPalette();
     if (!this.state.books.length) {
       this.poll = setInterval(() => { if (window.BOOKS) { clearInterval(this.poll); this.setState({ books: window.BOOKS }); } }, 50);
@@ -544,7 +623,7 @@ class Component extends DCLogic {
     const homeSessions = sessions.filter(s => s.active).slice(0, 3);
     const nav = [['نخست', '#/', 'home'], ['کتاب‌ها', '#/books', 'books'], ['متن‌ها', '#/texts', 'texts'], ['نشست‌ها', '#/sessions', 'sessions'], ['تماس', '#/contact', 'contact']].map(([label, href, v]) => {
       const on = route.view === v || (v === 'books' && route.view === 'book') || (v === 'texts' && route.view === 'text');
-      return { label, href, onClick: undefined, color: on ? 'var(--ac,#343F4A)' : '#302C29', line: on ? '#ffffff' : 'transparent' };
+      return { label, href, onClick: undefined, color: on ? 'var(--ac,#343F4A)' : '#302C29', line: on ? '#ffffff' : 'transparent', mw: on ? 700 : 500 };
     });
     const idx = Math.max(0, books.findIndex(b => b.slug === route.slug));
     const cur = books[idx] || { intro: [], authorBio: [], buy: [], translators: [] };
@@ -570,7 +649,7 @@ class Component extends DCLogic {
       homeBooks: books,
       homeTexts: texts.slice(0, 3), hasHomeTexts: texts.length > 0,
       textTabs, textCat, catTexts, hasCatTexts: catTexts.length > 0, noCatTexts: catTexts.length === 0, text,
-      isTexts: route.view === 'texts', isText: route.view === 'text', isSessions: route.view === 'sessions', isContact: route.view === 'contact',
+      isTexts: route.view === 'texts', isText: route.view === 'text', isSessions: route.view === 'sessions', isContact: route.view === 'contact', menuOpen: !!this.state.menuOpen, menuClosed: !this.state.menuOpen, menuExpanded: this.state.menuOpen ? 'true' : 'false', toggleMenu: this.toggleMenu, closeMenu: this.closeMenu,
       sessionGroups, homeSessions, hasHomeSessions: homeSessions.length > 0,
       book, prev: books[(idx - 1 + n) % n] || {}, next: books[(idx + 1) % n] || {}
     };
