@@ -86,8 +86,8 @@ a:hover{color:#343F4A}
 [data-m=next]{flex-direction:row !important;text-align:right !important}
 [data-m=crow]{flex-wrap:wrap !important;gap:8px 14px !important;padding:18px 0 !important}
 [data-m=crow]>span:last-child{font-size:15px !important;margin-inline-start:0 !important;width:100%;text-align:right}
-[data-m=foot]{flex-direction:column !important;align-items:flex-start !important;padding:32px var(--px) !important;gap:20px !important}
-[data-m=foot-links]{flex-direction:row !important;align-items:center !important;gap:8px !important;margin-inline-start:-10px}
+[data-m=foot]{flex-direction:row !important;flex-wrap:nowrap !important;justify-content:space-between !important;align-items:center !important;padding:24px var(--px) !important;gap:16px !important}
+[data-m=foot-links]{flex-direction:row !important;flex-wrap:nowrap !important;align-items:center !important;gap:4px !important;margin-inline-end:-10px}
 [data-m=foot-links]>a{min-width:44px;min-height:44px;justify-content:center;gap:0 !important}
 [data-m=foot-links]>a>span{display:none !important}
 [data-m=foot-nav]{display:none !important}
@@ -396,7 +396,7 @@ a:hover{color:#343F4A}
             <sc-if value="{{ book.subtitle }}" hint-placeholder-val="{{ true }}">
               <div style="font-size:clamp(16px,1.5vw,18px);font-weight:400;color:#5f5a54;margin-top:14px;line-height:1.9">{{ book.subtitle }}</div>
             </sc-if>
-            <div dir="ltr" style="text-align:right;font-size:13px;font-weight:400;color:#5f5a54;margin-top:10px">{{ book.en }}</div>
+            <div dir="ltr" style="text-align:right;font-size:16px;font-weight:400;color:#5f5a54;margin-top:10px">{{ book.en }}</div>
 
             <div style="margin-top:36px;display:flex;flex-direction:column;gap:4px;font-size:16px;font-weight:500;line-height:1.9;color:#302C29;position:relative">
               <span>{{ book.authorLine }}</span>
@@ -423,7 +423,7 @@ a:hover{color:#343F4A}
             </div>
 
             <div style="position:relative;margin:clamp(56px,7vw,88px) 0 24px">
-              <h2 style="margin:0;font-size:14px;font-weight:500;color:var(--ac,#343F4A);position:relative">معرفی کتاب</h2>
+              <h2 style="margin:0;font-size:clamp(16px,1.4vw,17px);font-weight:700;color:#302C29;position:relative">معرفی کتاب</h2>
             </div>
             <div style="display:flex;flex-direction:column;gap:22px;max-width:640px">
               <sc-for list="{{ book.intro }}" as="p" hint-placeholder-count="2">
@@ -482,15 +482,16 @@ a:hover{color:#343F4A}
           </div>
         </sc-if>
 
-        <div data-m="pn" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:clamp(80px,10vw,140px);border-top:1px solid #dcd6cc;padding-top:32px">
-          <a href="{{ prev.href }}" style="display:flex;align-items:center;gap:20px">
-            <img src="{{ prev.cover }}" alt="" style="width:clamp(80px,9vw,110px);display:block;outline:1px solid rgba(48,44,41,.12);outline-offset:-1px;box-shadow:0 18px 30px -16px rgba(48,44,41,.55);transition:transform .5s cubic-bezier(.2,.7,.2,1)" style-hover="transform:translateY(-4px)">
-            <div><div style="font-size:13px;font-weight:400;color:#5f5a54">کتاب قبلی</div><div style="font-size:clamp(16px,1.4vw,17px);font-weight:500;line-height:1.6;margin-top:6px">{{ prev.title }}</div></div>
-          </a>
-          <a data-m="next" href="{{ next.href }}" style="display:flex;align-items:center;gap:20px;flex-direction:row-reverse;text-align:left">
-            <img src="{{ next.cover }}" alt="" style="width:clamp(80px,9vw,110px);display:block;outline:1px solid rgba(48,44,41,.12);outline-offset:-1px;box-shadow:0 18px 30px -16px rgba(48,44,41,.55);transition:transform .5s cubic-bezier(.2,.7,.2,1)" style-hover="transform:translateY(-4px)">
-            <div><div style="font-size:13px;font-weight:400;color:#5f5a54">کتاب بعدی</div><div style="font-size:clamp(16px,1.4vw,17px);font-weight:500;line-height:1.6;margin-top:6px">{{ next.title }}</div></div>
-          </a>
+        <div style="margin-top:clamp(80px,10vw,140px);border-top:1px solid #dcd6cc;padding-top:32px">
+          <h2 style="margin:0 0 28px;font-size:clamp(20px,1.9vw,24px);font-weight:700;line-height:1.5">کتاب‌های دیگر</h2>
+          <div data-m="pn" style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+            <sc-for list="{{ others }}" as="o" hint-placeholder-count="2">
+            <a href="{{ o.href }}" style="display:flex;align-items:center;gap:20px">
+              <img src="{{ o.cover }}" alt="" style="width:clamp(72px,8vw,100px);flex:none;display:block;outline:1px solid rgba(48,44,41,.12);outline-offset:-1px;box-shadow:0 18px 30px -16px rgba(48,44,41,.55);transition:transform .5s cubic-bezier(.2,.7,.2,1)" style-hover="transform:translateY(-4px)">
+              <div style="display:flex;flex-direction:column;gap:6px;min-width:0"><span style="font-size:clamp(16px,1.4vw,17px);font-weight:500;line-height:1.6">{{ o.title }}</span><span style="font-size:14px;font-weight:400;line-height:1.7;color:#5f5a54">{{ o.authorShort }}</span></div>
+            </a>
+            </sc-for>
+          </div>
         </div>
       </section>
     </sc-if>
@@ -642,6 +643,7 @@ class Component extends DCLogic {
       return { label, href, onClick: undefined, color: on ? 'var(--ac,#343F4A)' : '#302C29', line: on ? '#ffffff' : 'transparent', mw: on ? 700 : 500 };
     });
     const idx = Math.max(0, books.findIndex(b => b.slug === route.slug));
+    const others = books.length > 1 ? [books[(idx + 1) % books.length], books[(idx + books.length - 1) % books.length]].filter((b, i, a) => b && b !== books[idx] && a.indexOf(b) === i).map(b => ({ href: b.href || ('#/book/' + b.slug), cover: b.cover, title: b.title, authorShort: b.authorShort || b.author })) : [];
     const cur = books[idx] || { intro: [], authorBio: [], buy: [], translators: [] };
     const rows = [];
     if (cur.author) rows.push({ k: 'نویسنده', v: cur.author });
@@ -662,6 +664,7 @@ class Component extends DCLogic {
       isList: layout === 'list', isGrid: layout === 'grid',
       countLabel: this.fa(books.length) + ' عنوان',
       featured: books[0] ? { ...books[0], buyHref: (books[0].buy[0] || {}).href || '#' } : {},
+      others,
       homeBooks: books.filter(b => !['they-say-i-say', 'why-leaders-lie', 'future-of-power'].includes(b.slug)),
       homeTexts: texts.slice(0, 3), hasHomeTexts: texts.length > 0,
       textTabs, textCat, catTexts, hasCatTexts: catTexts.length > 0, noCatTexts: catTexts.length === 0, text,
