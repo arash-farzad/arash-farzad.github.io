@@ -90,6 +90,7 @@ a:hover{color:#343F4A}
 [data-m=foot-links]{flex-direction:row !important;align-items:center !important;gap:8px !important;margin-inline-start:-10px}
 [data-m=foot-links]>a{min-width:44px;min-height:44px;justify-content:center;gap:0 !important}
 [data-m=foot-links]>a>span{display:none !important}
+[data-m=foot-nav]{display:none !important}
 }
 </style>
 </helmet>
@@ -139,7 +140,6 @@ a:hover{color:#343F4A}
             <img src="{{ featured.cover }}" alt="{{ featured.title }}" style="width:100%;display:block;outline:1px solid rgba(48,44,41,.12);outline-offset:-1px;box-shadow:0 2px 4px rgba(48,44,41,0.072),0 40px 70px -40px rgba(48,44,41,0.495);transition:transform 1s cubic-bezier(.2,.7,.2,1)" style-hover="transform:translateY(-8px)">
           </a>
           <div data-m="hero-text" style="flex:0 1 360px;min-width:min(100%,280px);display:flex;flex-direction:column;align-items:flex-start;position:relative;z-index:1;padding:clamp(24px,3vw,40px) 0">
-            <div data-m="h-label" style="display:inline-flex;align-items:center;font-size:14px;font-weight:500;line-height:1.5;color:#6B7F6A;border:1px solid #6B7F6A;border-radius:8px;padding:5px 14px;margin-bottom:28px">تازه‌ترین ترجمه</div>
             <h1 data-m="h-title" style="margin:0;font-size:clamp(32px,3.4vw,42px);font-weight:700;line-height:1.4;text-wrap:balance;color:#302C29"><a href="{{ featured.href }}" style="color:inherit;transition:color .3s ease" style-hover="color:#343F4A;opacity:.75">{{ featured.title }}</a></h1>
             
             <div data-m="h-auth" style="margin-top:18px;display:flex;flex-direction:column;gap:6px;font-size:16px;font-weight:500;line-height:1.9;color:#343F4A"><span>{{ featured.author }}</span><span>{{ featured.translatorLine }}</span></div>
@@ -149,7 +149,7 @@ a:hover{color:#343F4A}
         </div>
       </section>
       <div style="position:relative;z-index:1;background:var(--soft,#f1eee7)">
-      <section data-m="sec-books" style="max-width:1320px;margin:0 auto;padding:clamp(80px,9vw,130px) var(--px,clamp(40px,8vw,112px)) clamp(96px,11vw,160px)">
+      <section data-m="sec-books" style="max-width:1320px;margin:0 auto;padding:clamp(48px,5.4vw,78px) var(--px,clamp(40px,8vw,112px)) clamp(96px,11vw,160px)">
         <div data-m="sec-title" style="display:flex;align-items:center;gap:clamp(20px,3vw,40px);width:100%;margin-bottom:clamp(48px,6vw,80px)">
             <span aria-hidden="true" style="flex:1 1 0;min-width:24px;height:4px;background:linear-gradient(#D8D7CE,#D8D7CE) center/100% 1px no-repeat"></span>
             <a href="#/books" style="flex:0 0 auto;color:#302C29;transition:opacity .3s" style-hover="opacity:.7"><h2 style="margin:0;font-size:clamp(26px,2.6vw,32px);font-weight:700;line-height:1.4;text-align:center">کتاب‌ها</h2></a>
@@ -242,9 +242,9 @@ a:hover{color:#343F4A}
     <sc-if value="{{ isTexts }}" hint-placeholder-val="{{ false }}">
       <section data-m="page" data-screen-label="Texts" style="max-width:1100px;margin:0 auto;padding:clamp(48px,8vw,110px) var(--px,clamp(40px,10vw,112px)) clamp(80px,10vw,140px)">
         <h1 data-m="h1" style="margin:0 0 28px;font-size:clamp(32px,3.4vw,42px);font-weight:700;line-height:1.4">متن‌ها</h1>
-        <nav style="display:flex;gap:clamp(24px,3.4vw,48px);flex-wrap:wrap;border-bottom:1px solid #D8D7CE">
+        <nav style="display:flex;gap:12px;flex-wrap:wrap">
           <sc-for list="{{ textTabs }}" as="tb" hint-placeholder-count="3">
-            <a href="{{ tb.href }}" style="display:flex;gap:8px;align-items:baseline;padding:12px 0;margin-bottom:-1px;font-size:16px;font-weight:{{ tb.fw }};line-height:1.5;color:{{ tb.color }};border-bottom:2px solid {{ tb.line }};transition:color .3s" style-hover="color:#302C29"><span>{{ tb.label }}</span></a>
+            <a href="{{ tb.href }}" style="display:flex;align-items:center;min-height:44px;box-sizing:border-box;padding:8px 20px;border-radius:10px;font-size:16px;font-weight:{{ tb.fw }};line-height:1.5;color:{{ tb.color }};background:{{ tb.bg }};border:1px solid {{ tb.line }};transition:color .3s,background .3s,border-color .3s" style-hover="border-color:#343F4A"><span>{{ tb.label }}</span></a>
           </sc-for>
         </nav>
         <p style="margin:clamp(24px,3vw,32px) 0 clamp(24px,3vw,40px);max-width:620px;font-size:15px;font-weight:400;line-height:1.9;color:#5f5a54">{{ textCat.desc }}</p>
@@ -311,7 +311,7 @@ a:hover{color:#343F4A}
         <div style="display:flex;flex-direction:column;gap:clamp(56px,7vw,96px);margin-top:clamp(24px,3vw,40px)">
           <sc-for list="{{ sessionGroups }}" as="g" hint-placeholder-count="2">
             <div>
-              <h2 style="margin:0 0 8px;font-size:clamp(20px,1.9vw,24px);font-weight:700;line-height:1.5">{{ g.title }}</h2>
+              <h2 style="display:inline-block;margin:0 0 16px;padding:8px 20px;border:1px solid #343F4A;border-radius:10px;font-size:clamp(20px,1.9vw,24px);font-weight:700;line-height:1.5">{{ g.title }}</h2>
               <p style="margin:0 0 clamp(20px,2.4vw,28px);max-width:620px;font-size:15px;font-weight:400;line-height:1.9;color:#5f5a54">{{ g.desc }}</p>
               <div style="display:flex;flex-direction:column">
                 <sc-for list="{{ g.items }}" as="s" hint-placeholder-count="0">
@@ -500,7 +500,7 @@ a:hover{color:#343F4A}
   <footer ref="{{ footerRef }}" id="contact" style="background:var(--ac,#343F4A);color:#ffffff;transition:background .6s ease">
     <div data-m="foot" style="max-width:1320px;margin:0 auto;padding:38px var(--px,clamp(40px,8vw,112px));display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;font-size:14px">
       <span style="font-size:15px;font-weight:500">آرش فرزاد</span>
-      <div style="display:flex;gap:28px">
+      <div data-m="foot-nav" style="display:flex;gap:28px">
         <a href="#/books" style="color:#ffffff">کتاب‌ها</a>
         <a href="#/texts" style="color:#ffffff">متن‌ها</a>
         <a href="#/sessions" style="color:#ffffff">نشست‌ها</a>
@@ -622,11 +622,11 @@ class Component extends DCLogic {
       const byline = t.category === 'translations' || !t.category
         ? [t.originalAuthor ? 'نوشتهٔ ' + t.originalAuthor : '', t.translator ? 'ترجمهٔ ' + t.translator : ''].filter(Boolean).join('  |  ')
         : (t.author ? 'نوشتهٔ ' + t.author : '');
-      return { ...t, category: c.id, catLabel: c.one, catPlural: c.label, href: ext ? t.url : '#/text/' + t.slug, target: ext ? '_blank' : '_self', meta: [t.source, t.date].filter(Boolean).join('  |  '), byline, cta: ext ? 'خواندن در ' + (t.linkSource || t.source || 'منبع') + ' ←' : 'خواندن متن ←', body: t.body || [], backHref: '#/texts/' + c.id };
+      return { ...t, category: c.id, catLabel: c.one, catPlural: c.label, href: ext ? t.url : '#/text/' + t.slug, target: ext ? '_blank' : '_self', meta: [t.source, t.date].filter(Boolean).join('  |  '), byline, cta: ext ? 'در ' + (t.linkSource || t.source || 'منبع') + ' بخوانید ←' : 'خواندن متن ←', body: t.body || [], backHref: '#/texts/' + c.id };
     });
     const textCat = route.view === 'texts' ? catOf(route.slug) : CATS[0];
     const catTexts = texts.filter(t => t.category === textCat.id);
-    const textTabs = CATS.map(c => { const on = c.id === textCat.id; return { label: c.label, href: '#/texts/' + c.id, count: this.fa(texts.filter(t => t.category === c.id).length), fw: on ? '700' : '400', color: on ? '#302C29' : '#5f5a54', line: on ? '#302C29' : 'transparent' }; });
+    const textTabs = CATS.map(c => { const on = c.id === textCat.id; return { label: c.label, href: '#/texts/' + c.id, count: this.fa(texts.filter(t => t.category === c.id).length), fw: on ? '700' : '400', color: on ? '#ffffff' : '#302C29', bg: on ? '#343F4A' : 'transparent', line: on ? '#343F4A' : '#cfcabe' }; });
     const text = texts.find(t => t.slug === route.slug) || { body: [] };
     const ST = { upcoming: 'پیش رو', ongoing: 'در حال برگزاری', past: 'برگزار شده' };
     const GROUPS = [
@@ -662,7 +662,7 @@ class Component extends DCLogic {
       isList: layout === 'list', isGrid: layout === 'grid',
       countLabel: this.fa(books.length) + ' عنوان',
       featured: books[0] ? { ...books[0], buyHref: (books[0].buy[0] || {}).href || '#' } : {},
-      homeBooks: books,
+      homeBooks: books.filter(b => !['they-say-i-say', 'why-leaders-lie', 'future-of-power'].includes(b.slug)),
       homeTexts: texts.slice(0, 3), hasHomeTexts: texts.length > 0,
       textTabs, textCat, catTexts, hasCatTexts: catTexts.length > 0, noCatTexts: catTexts.length === 0, text,
       isTexts: route.view === 'texts', isText: route.view === 'text', isSessions: route.view === 'sessions', isContact: route.view === 'contact', menuOpen: !!this.state.menuOpen, menuClosed: !this.state.menuOpen, menuExpanded: this.state.menuOpen ? 'true' : 'false', toggleMenu: this.toggleMenu, closeMenu: this.closeMenu,
