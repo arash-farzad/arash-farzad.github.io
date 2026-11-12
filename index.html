@@ -495,10 +495,18 @@ a:hover{color:#343F4A}
             <div style="display:flex;flex-direction:column;gap:18px;flex:1 1 360px;min-width:0">
               <h3 style="margin:0 0 6px;font-size:clamp(26px,2.6vw,32px);font-weight:700;line-height:1.4;text-align:center">دیدگاه دیگران</h3>
               <sc-for list="{{ book.reviews }}" as="rv" hint-placeholder-count="2">
+                <sc-if value="{{ rv.href }}" hint-placeholder-val="{{ true }}">
                 <a href="{{ rv.href }}" target="_blank" rel="noopener" style="display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;background:#ffffff;border-radius:14px;border:1px solid #e2ddd4;padding:clamp(22px,3vw,32px) clamp(20px,3vw,40px);box-shadow:0 18px 30px -24px rgba(48,44,41,.35);transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s" style-hover="transform:translateY(-3px);box-shadow:0 26px 40px -24px rgba(48,44,41,.45)">
                   <span style="font-size:clamp(17px,1.6vw,19px);font-weight:400;line-height:1.8;color:#302C29">«{{ rv.text }}»</span>
                   <span style="display:inline-flex;align-items:center;gap:8px;margin-top:6px;font-size:14px;font-weight:500;line-height:1.5;color:var(--ac,#343F4A);border:1px solid var(--ac,#343F4A);border-radius:999px;padding:6px 16px;transition:background .3s,color .3s">{{ rv.source }}<span>{{ rv.arrow }}</span></span>
                 </a>
+                </sc-if>
+                <sc-if value="{{ rv.noLink }}" hint-placeholder-val="{{ false }}">
+                <figure style="margin:0;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;background:#ffffff;border-radius:14px;border:1px solid #e2ddd4;padding:clamp(22px,3vw,32px) clamp(20px,3vw,40px);box-shadow:0 18px 30px -24px rgba(48,44,41,.35)">
+                  <blockquote style="margin:0;font-size:clamp(17px,1.6vw,19px);font-weight:400;line-height:1.8;color:#302C29">«{{ rv.text }}»</blockquote>
+                  <figcaption style="display:inline-flex;align-items:center;gap:8px;margin-top:6px;font-size:14px;font-weight:500;line-height:1.5;color:var(--ac,#343F4A);border:1px solid var(--ac,#343F4A);border-radius:999px;padding:6px 16px">{{ rv.source }}</figcaption>
+                </figure>
+                </sc-if>
               </sc-for>
             </div>
           </div>
@@ -692,7 +700,7 @@ class Component extends DCLogic {
     if (cur.publisher) facts.push({ k: 'ناشر', v: cur.publisher });
     if (cur.pages) facts.push({ k: 'صفحه', v: cur.pages });
     const factLine = [cur.publisher ? 'ناشر: ' + cur.publisher : '', cur.pages ? cur.pages + ' صفحه' : ''].filter(Boolean).join('  |  ');
-    const book = { ...cur, rows, facts, factLine, hasReviews: !!(cur.reviews && cur.reviews.length), reviews: (cur.reviews || []).map((rv, j) => ({ ...rv, href: rv.href || undefined, arrow: rv.href ? ' ←' : '', indent: ['0 40px', '40px 0', '0 16px'][j % 3] })), pullQuote: cur.pullQuote || '', videoThumb: cur.video ? 'https://img.youtube.com/vi/' + cur.video.id + '/hqdefault.jpg' : '', videoHref: cur.video ? 'https://www.youtube.com/watch?v=' + cur.video.id : '', videoCaption: cur.video ? cur.video.caption : '', authorLine: 'نوشتهٔ ' + (cur.author || ''), transFull: 'ترجمهٔ ' + this.joinFa(cur.translators || []), transLine: this.joinFa(cur.translators || []), note: cur.note || '', decorA: cur.decorA || '', decorB: cur.decorB || '', hasBio: !!(cur.authorBio && cur.authorBio.length), hasTags: !!(cur.tags && cur.tags.length), tags: cur.tags || [], aboutName: cur.aboutName || cur.author, subtitle: cur.subtitle || '' };
+    const book = { ...cur, rows, facts, factLine, hasReviews: !!(cur.reviews && cur.reviews.length), reviews: (cur.reviews || []).map((rv, j) => ({ ...rv, href: rv.href || undefined, noLink: !rv.href, arrow: rv.href ? ' ←' : '', indent: ['0 40px', '40px 0', '0 16px'][j % 3] })), pullQuote: cur.pullQuote || '', videoThumb: cur.video ? 'https://img.youtube.com/vi/' + cur.video.id + '/hqdefault.jpg' : '', videoHref: cur.video ? 'https://www.youtube.com/watch?v=' + cur.video.id : '', videoCaption: cur.video ? cur.video.caption : '', authorLine: 'نوشتهٔ ' + (cur.author || ''), transFull: 'ترجمهٔ ' + this.joinFa(cur.translators || []), transLine: this.joinFa(cur.translators || []), note: cur.note || '', decorA: cur.decorA || '', decorB: cur.decorB || '', hasBio: !!(cur.authorBio && cur.authorBio.length), hasTags: !!(cur.tags && cur.tags.length), tags: cur.tags || [], aboutName: cur.aboutName || cur.author, subtitle: cur.subtitle || '' };
     const n = books.length || 1;
     const layout = this.props.booksLayout || 'list';
     return {
