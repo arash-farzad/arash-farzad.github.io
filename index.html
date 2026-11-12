@@ -556,7 +556,7 @@ class Component extends DCLogic {
   ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(() => requestAnimationFrame(this.fitHero)) : null;
   pageRef = React.createRef();
   parse() {
-    const h = (window.location.hash || '').replace(/^#\/?/, '');
+    const h = window.__ROUTE || (window.location.hash || '').replace(/^#\/?/, '');
     let [view, slug] = h.split('/');
     if (view === 'writings') view = 'texts';
     if (view === 'post') view = 'text';
@@ -583,6 +583,7 @@ class Component extends DCLogic {
     document.body.style.background = bg;
   }
   componentDidMount() {
+    const pre = document.getElementById('prerender'); this.hadPre = !!pre; if (pre) pre.remove();
     window.addEventListener('hashchange', this.closeMenu);
     window.addEventListener('resize', this.onResizeMenu);
     this.applyPalette();
@@ -609,7 +610,7 @@ class Component extends DCLogic {
         });
       }, 260);
     };
-    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    if ('scrollRestoration' in history && !window.__ROUTE) history.scrollRestoration = 'manual';
     this.lastY = window.scrollY;
     this.onScrollTrack = () => { this.lastY = window.scrollY; };
     this.onLinkClick = (ev) => { const a = ev.target.closest && ev.target.closest('a[href^="#/"]'); if (a) this.pushNav = Date.now(); };
@@ -620,7 +621,7 @@ class Component extends DCLogic {
     this.fitHero();
     if (/^#\/?contact/.test(window.location.hash)) setTimeout(this.goContact, 500);
     const el = this.pageRef.current;
-    if (el) { el.style.opacity = '0'; el.style.transform = 'translateY(14px)'; requestAnimationFrame(() => requestAnimationFrame(() => { el.style.opacity = '1'; el.style.transform = 'none'; })); }
+    if (el && !this.hadPre) { el.style.opacity = '0'; el.style.transform = 'translateY(14px)'; requestAnimationFrame(() => requestAnimationFrame(() => { el.style.opacity = '1'; el.style.transform = 'none'; })); }
   }
   componentDidUpdate(pp, ps) { if (pp.palette !== this.props.palette || pp.background !== this.props.background || pp.typography !== this.props.typography) this.applyPalette(); }
   componentWillUnmount() { window.removeEventListener('scroll', this.onScrollTrack); document.removeEventListener('click', this.onLinkClick, true); window.removeEventListener('hashchange', this.onHash); window.removeEventListener('resize', this.fitHero); if (this.ro) this.ro.disconnect(); clearInterval(this.poll); clearInterval(this.qt); clearTimeout(this.t); }
@@ -642,7 +643,7 @@ class Component extends DCLogic {
       decorA: opt(b.decorA),
       decorB: opt(b.decorB),
       num: this.fa(String(i + 1).padStart(2, '0')),
-      href: '#/book/' + b.slug,
+      href: (window.__STATIC_BOOKS || ['song-of-the-cell']).includes(b.slug) ? '/book/' + b.slug + '/' : '#/book/' + b.slug,
       translatorLine: (b.translators[0] === 'گروه مترجمان' ? 'ترجمهٔ ' : 'ترجمهٔ ') + this.joinFa(b.translators),
       excerpt: b.intro[0] || '',
       authorShort: b.aboutName || b.author,
