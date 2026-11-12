@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://arash-farzad.github.io/</loc><lastmod>2026-11-12</lastmod></url>
-  <url><loc>https://arash-farzad.github.io/book/song-of-the-cell/</loc><lastmod>2026-11-12</lastmod></url>
+  <url><loc>https://arash-farzad.github.io/</loc></url>
+  <url><loc>https://arash-farzad.github.io/books/</loc></url>
+  <url><loc>https://arash-farzad.github.io/texts/</loc></url>
+  <url><loc>https://arash-farzad.github.io/sessions/</loc></url>
+  <url><loc>https://arash-farzad.github.io/contact/</loc></url>
+  <url><loc>https://arash-farzad.github.io/book/song-of-the-cell/</loc></url>
+  <url><loc>https://arash-farzad.github.io/book/future-of-power/</loc></url>
+  <url><loc>https://arash-farzad.github.io/book/they-say-i-say/</loc></url>
+  <url><loc>https://arash-farzad.github.io/book/grasshopper/</loc></url>
+  <url><loc>https://arash-farzad.github.io/book/puppets-masks/</loc></url>
+  <url><loc>https://arash-farzad.github.io/book/why-leaders-lie/</loc></url>
+  <url><loc>https://arash-farzad.github.io/book/learning-from-experience/</loc></url>
 </urlset>
