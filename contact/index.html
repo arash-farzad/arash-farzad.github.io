@@ -448,8 +448,13 @@ a:hover{color:#343F4A}
         <h1 data-m="h1" style="margin:18px 0 12px;font-size:clamp(32px,3.4vw,42px);font-weight:700;line-height:1.4;text-wrap:balance">{{ text.title }}</h1>
         <div style="font-size:16px;font-weight:500;line-height:1.9;margin-bottom:clamp(32px,4vw,48px)">{{ text.byline }}</div>
         <div style="display:flex;flex-direction:column;gap:24px">
-          <sc-for list="{{ text.body }}" as="p" hint-placeholder-count="2">
-            <p style="margin:0;font-size:clamp(16px,1.4vw,17px);font-weight:400;line-height:1.9;text-align:right;text-wrap:pretty">{{ p }}</p>
+          <sc-for list="{{ text.blocks }}" as="bk" hint-placeholder-count="2">
+            <sc-if value="{{ bk.isP }}" hint-placeholder-val="{{ true }}">
+              <p style="margin:0;font-size:clamp(16px,1.4vw,17px);font-weight:400;line-height:1.9;text-align:right;text-wrap:pretty"><sc-for list="{{ bk.parts }}" as="pt" hint-placeholder-count="1"><span style="font-weight:{{ pt.fw }}">{{ pt.t }}</span></sc-for></p>
+            </sc-if>
+            <sc-if value="{{ bk.isH }}" hint-placeholder-val="{{ false }}">
+              <h2 style="margin:clamp(20px,2.6vw,32px) 0 -4px;font-size:clamp(19px,1.8vw,21px);font-weight:700;line-height:1.6;color:#302C29;text-wrap:balance">{{ bk.text }}</h2>
+            </sc-if>
           </sc-for>
         </div>
       </article>
@@ -811,9 +816,9 @@ class Component extends DCLogic {
       buy: (b.buy || []).map((l, j) => ({ ...l, bg: j === 0 ? 'var(--ac,#343F4A)' : '#ffffff', fg: j === 0 ? '#ffffff' : 'var(--ac,#343F4A)' }))
     }));
     const CATS = [
-      { id: 'translations', label: 'ترجمه‌ها', one: 'ترجمه', desc: 'ترجمهٔ مقاله‌ها، جستارها، و متن‌های کوتاه.' },
-      { id: 'notes', label: 'یادداشت‌ها', one: 'یادداشت', desc: 'نوشته‌هایم دربارهٔ ترجمه، کتاب‌ها، و موضوعات دیگر.' },
-      { id: 'workshop', label: 'تمرین ترجمه', one: 'تمرین ترجمه', desc: 'نکته‌هایی دربارهٔ زبان، ترجمه، و نوشتن.' }
+      { id: 'translations', label: 'ترجمه‌ها', one: 'ترجمه', desc: 'ترجمهٔ مقاله‌ها، جستارها، و متن‌های کوتاه از نویسندگان دیگر.' },
+      { id: 'notes', label: 'جستارها و یادداشت‌ها', one: 'جستار و یادداشت', desc: 'تأملاتی دربارهٔ زبان، ترجمه، کتاب‌ها، ادبیات، و فرهنگ.' },
+      { id: 'workshop', label: 'کارگاه ترجمه و نگارش', one: 'کارگاه ترجمه و نگارش', desc: 'نکته‌های آموزشی، مثال‌ها، و تمرین‌هایی برای تقویت مهارت ترجمه و فارسی‌نویسی.' }
     ];
     const catOf = id => CATS.find(c => c.id === id) || CATS[0];
     const texts = (window.TEXTS || []).map(t => {
@@ -821,7 +826,7 @@ class Component extends DCLogic {
       const byline = t.category === 'translations' || !t.category
         ? [t.originalAuthor ? 'نوشتهٔ ' + t.originalAuthor : '', t.translator ? 'ترجمهٔ ' + t.translator : ''].filter(Boolean).join('  |  ')
         : (t.author ? 'نوشتهٔ ' + t.author : '');
-      return { ...t, category: c.id, catLabel: c.one, catPlural: c.label, href: ext ? t.url : '/text/' + t.slug + '/', target: ext ? '_blank' : '_self', meta: [t.source, t.date].filter(Boolean).join('  |  '), byline, cta: ext ? 'در ' + (t.linkSource || t.source || 'منبع') + ' بخوانید ←' : 'خواندن متن ←', ctaText: ext ? 'در ' + (t.linkSource || t.source || 'منبع') + ' بخوانید' : 'خواندن متن', body: t.body || [], backHref: c.id === CATS[0].id ? '/texts/' : '/texts/?cat=' + c.id };
+      return { ...t, category: c.id, catLabel: c.one, catPlural: c.label, href: ext ? t.url : '/text/' + t.slug + '/', target: ext ? '_blank' : '_self', meta: [t.source, t.date].filter(Boolean).join('  |  '), byline, cta: ext ? 'در ' + (t.linkSource || t.source || 'منبع') + ' بخوانید ←' : 'خواندن متن ←', ctaText: ext ? 'در ' + (t.linkSource || t.source || 'منبع') + ' بخوانید' : 'خواندن متن', body: t.body || [], blocks: (t.body || []).map(x => typeof x === 'string' ? { isP: true, parts: x.split('**').map((s, k) => ({ t: s, fw: k % 2 ? '700' : '400' })).filter(s => s.t) } : { isH: true, text: x.h }), backHref: c.id === CATS[0].id ? '/texts/' : '/texts/?cat=' + c.id };
     });
     const textCat = route.view === 'texts' ? catOf(route.slug) : CATS[0];
     const catTexts = texts.filter(t => t.category === textCat.id);
