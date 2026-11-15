@@ -36,6 +36,12 @@ a:hover{color:#343F4A}
 [data-link] [data-arrow]{opacity:.55}
 [data-m=tcard]:hover [data-link],[data-m=tcard]:focus-visible [data-link],[data-m=bcard]:hover [data-link],[data-m=bcard]:focus-visible [data-link]{text-decoration:underline;text-decoration-color:rgba(74,90,104,.55);color:#343F4A}
 [data-m=tcard]:focus-visible,[data-m=bcard]:focus-visible{outline:2px solid #4A5A68;outline-offset:6px;border-radius:4px}
+[data-root]{display:flex;flex-direction:column;min-height:100vh;min-height:100dvh !important}
+[data-root]>header{position:sticky;top:0;z-index:50}
+[data-root]>main{flex:1 0 auto}
+[data-root]>footer{flex-shrink:0}
+:root{--hdr:62px}
+html{scroll-padding-top:var(--hdr)}
 @media (max-width:820px){
 [data-root]{overflow-x:clip}
 [data-root]{--px:clamp(20px,5vw,40px)}
@@ -116,7 +122,7 @@ a:hover{color:#343F4A}
 <script src="./support.js" defer></script>
 </head>
 <body>
-<div id="prerender"><div class="sc-host"><div dir="rtl" style="min-height: 100vh; background-color: var(--bg,#FAF8F4); background-image: var(--grain,none); color: rgb(48, 44, 41); font-family: var(--f-body,'Farhang2',Tahoma,sans-serif); font-weight: 400; transition: background 0.6s; --ac: #343F4A; --soft: #f1eee7; --bg: #FAF8F4; --hl: #6B7F6A; --f-body: 'Farhang2',Tahoma,sans-serif; --f-display: 'Dana','Farhang2',Tahoma,sans-serif; --grain: url(&quot;data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'&gt;&lt;filter id='n'&gt;&lt;feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/&gt;&lt;feColorMatrix values='0 0 0 0 .35  0 0 0 0 .3  0 0 0 0 .22  0 0 0 .09 0'/&gt;&lt;/filter&gt;&lt;rect width='100%' height='100%' filter='url(%23n)'/&gt;&lt;/svg&gt;&quot;);">
+<div id="prerender"><div class="sc-host"><div data-root="" dir="rtl" style="min-height: 100vh; background-color: var(--bg,#FAF8F4); background-image: var(--grain,none); color: rgb(48, 44, 41); font-family: var(--f-body,'Farhang2',Tahoma,sans-serif); font-weight: 400; transition: background 0.6s; --ac: #343F4A; --soft: #f1eee7; --bg: #FAF8F4; --hl: #6B7F6A; --f-body: 'Farhang2',Tahoma,sans-serif; --f-display: 'Dana','Farhang2',Tahoma,sans-serif; --grain: url(&quot;data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'&gt;&lt;filter id='n'&gt;&lt;feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/&gt;&lt;feColorMatrix values='0 0 0 0 .35  0 0 0 0 .3  0 0 0 0 .22  0 0 0 .09 0'/&gt;&lt;/filter&gt;&lt;rect width='100%' height='100%' filter='url(%23n)'/&gt;&lt;/svg&gt;&quot;);">
   <header style="background: var(--ac,#343F4A); color: rgb(255, 255, 255); transition: background 0.6s;">
     <div data-m="hdr" style="max-width: 1320px; margin: 0px auto; padding: 15px var(--px,clamp(40px,8vw,112px)); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 24px;">
       <a href="/" style="display: flex; flex-direction: column; gap: 2px; justify-self: start;">
@@ -143,7 +149,7 @@ a:hover{color:#343F4A}
       <section data-m="bk-page" data-screen-label="Book" style="max-width: 1240px; margin: 0px auto; padding: clamp(32px,5vw,64px) var(--px,clamp(40px,10vw,112px)) 40px;">
         <a data-m="bk-back" href="/books/" style="display: inline-flex; gap: 10px; font-size: 14px; font-weight: 500; line-height: 1.5; color: rgb(95, 90, 84); margin-bottom: clamp(32px, 5vw, 64px);"><span>→</span><span>همهٔ کتاب‌ها</span></a>
         <div data-m="bk-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: clamp(40px, 7vw, 110px); align-items: start;">
-          <div data-m="bk-cover" style="position: sticky; top: 40px; display: flex; justify-content: center; background: var(--soft,#f1eee7); border-radius: 18px; padding: clamp(36px, 6vw, 80px); transition: background 0.6s;">
+          <div data-m="bk-cover" style="position: sticky; top: calc(var(--hdr) + 40px); display: flex; justify-content: center; background: var(--soft,#f1eee7); border-radius: 18px; padding: clamp(36px, 6vw, 80px); transition: background 0.6s;">
             <img src="assets/opt/covers/song-of-the-cell.webp" srcset="assets/opt/covers/song-of-the-cell-360.webp 360w, assets/opt/covers/song-of-the-cell.webp 632w" sizes="(max-width: 820px) 70vw, 360px" width="632" height="878" fetchpriority="high" decoding="async" alt="سرود سلول‌ها" style="width: min(100%, 360px); display: block; outline: rgba(48, 44, 41, 0.12) solid 1px; outline-offset: -1px; box-shadow: rgba(48, 44, 41, 0.12) 0px 1px 2px, rgba(48, 44, 41, 0.55) 0px 40px 60px -34px; height: auto;">
           </div>
           <div style="display: flex; flex-direction: column; min-width: 0px; position: relative;">
@@ -275,6 +281,12 @@ a:hover{color:#343F4A}
 [data-link] [data-arrow]{opacity:.55}
 [data-m=tcard]:hover [data-link],[data-m=tcard]:focus-visible [data-link],[data-m=bcard]:hover [data-link],[data-m=bcard]:focus-visible [data-link]{text-decoration:underline;text-decoration-color:rgba(74,90,104,.55);color:#343F4A}
 [data-m=tcard]:focus-visible,[data-m=bcard]:focus-visible{outline:2px solid #4A5A68;outline-offset:6px;border-radius:4px}
+[data-root]{display:flex;flex-direction:column;min-height:100vh;min-height:100dvh !important}
+[data-root]>header{position:sticky;top:0;z-index:50}
+[data-root]>main{flex:1 0 auto}
+[data-root]>footer{flex-shrink:0}
+:root{--hdr:62px}
+html{scroll-padding-top:var(--hdr)}
 @media (max-width:820px){
 [data-root]{overflow-x:clip}
 [data-root]{--px:clamp(20px,5vw,40px)}
@@ -648,7 +660,7 @@ a:hover{color:#343F4A}
       <section data-m="bk-page" data-screen-label="Book" style="max-width:1240px;margin:0 auto;padding:clamp(32px,5vw,64px) var(--px,clamp(40px,10vw,112px)) 40px">
         <a data-m="bk-back" href="/books/" style="display:inline-flex;gap:10px;font-size:14px;font-weight:500;line-height:1.5;color:#5f5a54;margin-bottom:clamp(32px,5vw,64px)"><span>→</span><span>همهٔ کتاب‌ها</span></a>
         <div data-m="bk-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(40px,7vw,110px);align-items:start">
-          <div data-m="bk-cover" style="position:sticky;top:40px;display:flex;justify-content:center;background:var(--soft,#f1eee7);border-radius:18px;padding:clamp(36px,6vw,80px);transition:background .6s ease">
+          <div data-m="bk-cover" style="position:sticky;top:calc(var(--hdr) + 40px);display:flex;justify-content:center;background:var(--soft,#f1eee7);border-radius:18px;padding:clamp(36px,6vw,80px);transition:background .6s ease">
             <img src="{{ book.cover }}" srcset="{{ book.coverSet }}" sizes="(max-width: 820px) 70vw, 360px" width="{{ book.cw }}" height="{{ book.ch }}" fetchpriority="high" decoding="async" alt="{{ book.title }}" style="width:min(100%,360px);display:block;outline:1px solid rgba(48,44,41,.12);outline-offset:-1px;box-shadow:0 1px 2px rgba(48,44,41,.12),0 40px 60px -34px rgba(48,44,41,.55);height:auto">
           </div>
           <div style="display:flex;flex-direction:column;min-width:0;position:relative">
