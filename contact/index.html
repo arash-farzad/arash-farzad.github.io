@@ -462,7 +462,7 @@ html{scroll-padding-top:var(--hdr)}
         <div style="display:flex;flex-direction:column;gap:24px">
           <sc-for list="{{ text.blocks }}" as="bk" hint-placeholder-count="2">
             <sc-if value="{{ bk.isP }}" hint-placeholder-val="{{ true }}">
-              <p style="margin:0;font-size:clamp(16px,1.4vw,17px);font-weight:400;line-height:1.9;text-align:right;text-wrap:pretty"><sc-for list="{{ bk.parts }}" as="pt" hint-placeholder-count="1"><span style="font-weight:{{ pt.fw }}">{{ pt.t }}</span></sc-for></p>
+              <p style="margin:0;font-size:clamp(16px,1.4vw,17px);font-weight:400;line-height:1.9;text-align:right;text-wrap:pretty"><sc-for list="{{ bk.parts }}" as="pt" hint-placeholder-count="1"><sc-if value="{{ pt.isS }}" hint-placeholder-val="{{ true }}"><span style="font-weight:{{ pt.fw }}">{{ pt.t }}</span></sc-if><sc-if value="{{ pt.isA }}" hint-placeholder-val="{{ false }}"><a href="{{ pt.href }}" style="color:#4A5A68;text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px;text-decoration-color:rgba(74,90,104,.45)">{{ pt.t }}</a></sc-if></sc-for></p>
             </sc-if>
             <sc-if value="{{ bk.isH }}" hint-placeholder-val="{{ false }}">
               <h2 style="margin:clamp(20px,2.6vw,32px) 0 -4px;font-size:clamp(19px,1.8vw,21px);font-weight:700;line-height:1.6;color:#302C29;text-wrap:balance">{{ bk.text }}</h2>
@@ -838,7 +838,7 @@ class Component extends DCLogic {
       const byline = t.category === 'translations' || !t.category
         ? [t.originalAuthor ? 'نوشتهٔ ' + t.originalAuthor : '', t.translator ? 'ترجمهٔ ' + t.translator : ''].filter(Boolean).join('  |  ')
         : (t.author ? 'نوشتهٔ ' + t.author : '');
-      return { ...t, category: c.id, catLabel: c.one, catPlural: c.label, href: ext ? t.url : '/text/' + t.slug + '/', target: ext ? '_blank' : '_self', meta: [t.source, t.date].filter(Boolean).join('  |  '), byline, cta: ext ? 'در ' + (t.linkSource || t.source || 'منبع') + ' بخوانید ←' : 'خواندن متن ←', ctaText: ext ? 'در ' + (t.linkSource || t.source || 'منبع') + ' بخوانید' : 'خواندن متن', body: t.body || [], blocks: (t.body || []).map(x => typeof x === 'string' ? { isP: true, parts: x.split('**').map((s, k) => ({ t: s, fw: k % 2 ? '700' : '400' })).filter(s => s.t) } : { isH: true, text: x.h }), backHref: c.id === CATS[0].id ? '/texts/' : '/texts/?cat=' + c.id };
+      return { ...t, category: c.id, catLabel: c.one, catPlural: c.label, href: ext ? t.url : '/text/' + t.slug + '/', target: ext ? '_blank' : '_self', meta: [t.source, t.date].filter(Boolean).join('  |  '), byline, cta: ext ? 'در ' + (t.linkSource || t.source || 'منبع') + ' بخوانید ←' : 'خواندن متن ←', ctaText: ext ? 'در ' + (t.linkSource || t.source || 'منبع') + ' بخوانید' : 'خواندن متن', body: t.body || [], blocks: (t.body || []).map(x => typeof x === 'string' ? { isP: true, parts: x.split(/(\[[^\]]+\]\([^)]+\))/).flatMap(seg => { const m = seg.match(/^\[([^\]]+)\]\(([^)]+)\)$/); return m ? [{ t: m[1], href: m[2], isA: true }] : seg.split('**').map((s, k) => ({ t: s, fw: k % 2 ? '700' : '400', isS: true })); }).filter(s => s.t) } : { isH: true, text: x.h }), backHref: c.id === CATS[0].id ? '/texts/' : '/texts/?cat=' + c.id };
     });
     const textCat = route.view === 'texts' ? catOf(route.slug) : CATS[0];
     const catTexts = texts.filter(t => t.category === textCat.id);
